@@ -37,9 +37,35 @@ for i, x in enumerate(X):
          markerfacecolor = 'None',
          markersize = 10,
          markeredgewidth = 2)
-show()
-
+# show()
 # Finding the frauds
 mappings = som.win_map(X)
-frauds = np.concatenate((mappings[(8,1)], mappings[(6,8)]), axis = 0)
+
+list_of_winning_nodes = []
+while True:
+    i = input('write a two dimensional touple. Write x to when finished\n ')
+    i = tuple(i)
+    list_of_winning_nodes.append(i)
+    break
+print(list_of_winning_nodes)
+    # if isinstance(i,tuple) and len(i) == 2:
+    #     list_of_winning_nodes.append(i)
+    # elif i == 'x':
+    #     break
+    # else:
+    #     print('please write a two-dimensional tuple')
+
+    # if len(list_of_winning_nodes) > 9:
+    #     break
+
+frauds = np.array([])
+for x in list_of_winning_nodes:
+    frauds = np.concatenate([frauds, mappings[x]])
+
+# frauds = np.concatenate((mappings[(8,2)],mappings[(2,2)]), axis = 0)
+# frauds = np.array((mappings[(3,6)]))
+
+print('Frauds array shape: {}'.format(frauds.shape))
 frauds = sc.inverse_transform(frauds)
+
+print(frauds)
